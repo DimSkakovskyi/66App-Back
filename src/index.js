@@ -1,18 +1,21 @@
-
+import {config} from "dotenv";
+config()
+import { setupDB } from "./db/knexfile.js";
 import jwt from 'jsonwebtoken';
 import { Model } from 'objection';
 import knex from 'knex';
-// import knexConfig from '../config/knexfile.js';
+import knexConfig from './db/knexfile.js';
 import authMiddleware from './middleware/authMiddleware.js';
 import authRoutes from './routes/auth.js';
 import protectedRoutes from './routes/protected.js';
-// import AppDataSource from '../config/ormconfig.js';
 
 import express from 'express';
 import userRoutes from './routes/users.js';
 import taskRoutes from './routes/tasks.js';
 import habitRoutes from './routes/habits.js';
 import pomodoroRoutes from './routes/pomodoroSessions.js';
+
+setupDB();
 
 const app = express();
 
